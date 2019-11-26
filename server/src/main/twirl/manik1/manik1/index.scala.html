@@ -1,0 +1,29 @@
+@(message: String)
+
+<!--
+@main("Xiimbal maak") {
+    <h2>Akka HTTP and Scala.js share a same message</h2>
+    <ul>
+        <li>Akka HTTP shouts out: <em>@message</em></li>
+        <li>Scala.js shouts out: <em id="scalajsShoutOut"></em></li>
+    </ul>
+}
+ -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@message</title>
+        <link rel="stylesheet" href="/assets/stylesheets/main.min.css">
+    </head>
+    <body>
+        <div id="root">
+        </div>
+
+        @scalajs.html.scripts("client", name => s"/assets/$name", name => getClass.getResource(s"/public/$name") != null)
+
+        <script src="http://localhost:8090/assets/javascript/pdfmake.min.js"></script>
+        <script src="http://localhost:8090/assets/javascript/vfs_fonts.js"></script>
+
+    </body>
+</html>

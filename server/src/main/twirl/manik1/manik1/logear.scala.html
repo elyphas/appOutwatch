@@ -1,0 +1,22 @@
+@(mensage: String)
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>@mensage</title>
+    </head>
+    <body>
+        <h3> Introducir Tú usuario y contraseña</h3>
+        <h3> @mensage</h3>
+        <form action="http://10.51.253.205:8090/validate" method="post" enctype="application/x-www-form-urlencoded">
+            <label for="username">Usuario</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" id="Sessión">Sesión</button>
+        </form>
+    </body>
+</html>

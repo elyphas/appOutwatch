@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <option name="incrementalityType" value="SBT" />
+    <profile name="sbt 1" modules="manik_2207,nukul,searchcatalogs" />
+    <profile name="sbt 2" modules="shared">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-P:scalajs:mapSourceURI:file:/home/elyphas/Prjs/tsoolik_testeando/shared/src/main/scala/-&gt;30a180e907dbeffe75bd/" />
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-encoding" />
+        <parameter value="UTF-8" />
+        <parameter value="-language:_" />
+        <parameter value="-Xlint" />
+        <parameter value="-Xlint:adapted-args" />
+        <parameter value="-Xlint:infer-any" />
+        <parameter value="-Xlint:nullary-override" />
+        <parameter value="-Xlint:nullary-unit" />
+      </parameters>
+      <plugins>
+        <plugin path="$USER_HOME$/.ivy2/cache/org.scala-js/scalajs-compiler_2.12.6/jars/scalajs-compiler_2.12.6-0.6.31.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 3" modules="search_catalogs-outwatchcomponents,searchcatalogs-outwatchcomponents">
+      <plugins>
+        <plugin path="$USER_HOME$/.ivy2/cache/org.scala-js/scalajs-compiler_2.12.5/jars/scalajs-compiler_2.12.5-0.6.23.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 4" modules="client">
+      <parameters>
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-P:scalajs:sjsDefinedByDefault" />
+        <parameter value="-Ypartial-unification" />
+      </parameters>
+      <plugins>
+        <plugin path="$USER_HOME$/.ivy2/cache/org.scala-js/scalajs-compiler_2.12.6/jars/scalajs-compiler_2.12.6-0.6.31.jar" />
+        <plugin path="$USER_HOME$/.ivy2/cache/com.olegpy/better-monadic-for_2.12/jars/better-monadic-for_2.12-0.3.0-M4.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 5" modules="server">
+      <parameters>
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+      </parameters>
+      <plugins>
+        <plugin path="$USER_HOME$/.ivy2/cache/com.olegpy/better-monadic-for_2.12/jars/better-monadic-for_2.12-0.3.0-M4.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 6" modules="outwatchcomponents">
+      <parameters>
+        <parameter value="-P:scalajs:sjsDefinedByDefault" />
+      </parameters>
+      <plugins>
+        <plugin path="$USER_HOME$/.ivy2/cache/org.scala-js/scalajs-compiler_2.12.9/jars/scalajs-compiler_2.12.9-0.6.31.jar" />
+      </plugins>
+    </profile>
+    <profile name="sbt 7" modules="outwatch_components,tsoolik_testeando">
+      <parameters>
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+      </parameters>
+    </profile>
+    <profile name="sbt 8" modules=".jvm-shared">
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+      <parameters>
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-Ypartial-unification" />
+        <parameter value="-encoding" />
+        <parameter value="UTF-8" />
+        <parameter value="-language:_" />
+        <parameter value="-Xlint" />
+        <parameter value="-Xlint:adapted-args" />
+        <parameter value="-Xlint:infer-any" />
+        <parameter value="-Xlint:nullary-override" />
+        <parameter value="-Xlint:nullary-unit" />
+      </parameters>
+    </profile>
+  </component>
+</project>

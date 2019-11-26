@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: org.typelevel:alleycats-core_sjs0.6_2.12:2.0.0:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.typelevel/alleycats-core_sjs0.6_2.12/jars/alleycats-core_sjs0.6_2.12-2.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.typelevel/alleycats-core_sjs0.6_2.12/srcs/alleycats-core_sjs0.6_2.12-2.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

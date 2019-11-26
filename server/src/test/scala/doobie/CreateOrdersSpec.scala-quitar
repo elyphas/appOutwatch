@@ -1,0 +1,192 @@
+package manik1.modules.lstBienesStore
+
+import monix.execution.Scheduler.Implicits.global
+import cats.effect.IO
+import monix.execution.ExecutionModel.SynchronousExecution
+import monix.execution.Scheduler
+import monix.execution.schedulers.TrampolineScheduler
+import org.scalatest.concurrent.ScalaFutures
+import org.scalatest.{FlatSpec, Matchers}
+import postg.{CDetallePedido, CGralDataPedido, CGralDataProceso, CDmlQuerys}
+import shapeless.MkGenericLens
+import slick.jdbc.GetResult
+import slick.jdbc.SetParameter.SetUnit
+import spatutorial.shared.{DetallePedido, Fechas, GralDataPedido, GralDataProceso}
+
+import scala.concurrent
+import scala.concurrent.duration._
+import scala.concurrent.{Await, Future}
+
+class CreateOrdersSpec extends FlatSpec with Matchers with ScalaFutures {
+  implicit val scheduler = TrampolineScheduler(Scheduler.global, SynchronousExecution)
+
+  /*"al crear pedidos" should "ahorita deberia mostrar los datos de los procesos" in {
+    val process = new CGralDataProceso()
+    val result = process.byId("831-2018-ADQ2")
+    println(
+      Await.result(result, 5 seconds)
+    )
+  }*/
+
+  import slick.jdbc.PostgresProfile
+  val jdbcProfile = PostgresProfile
+  import jdbcProfile.api._
+
+  import manik1.manik1.shared.{Calcular, BuscaPedidoXProveedor, CantidadXDividir}
+  import spatutorial.shared.typeclass.Show._
+
+  val idComparative = "3-2019-ADQ2"
+  val generateOrders = new CDmlQuerys()
+
+  "al obtener los datos generales del proceso" should "mostrar sus resultados" in {
+    /** **************************************************************************************/
+    //////////////////////////////////////////////////////////////////////////////////////////
+    /** ********************   Datos Generales de los procesos     **************************/
+    val dataGralesProcess = new CGralDataProceso()
+    val resultadoDatosGralesProcess = dataGralesProcess.byId(idComparative)
+    val resultadoDatosGralesProcessAwait = Await.result(resultadoDatosGralesProcess, 5 seconds)
+
+    println("&&&&&&&&&&&&&&&&&&&&&&&&&&   Datos Generales del Proceso    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+    val finalResult = resultadoDatosGralesProcessAwait match {
+      case Right(value) =>
+        println(show(value))
+        value
+      case Left(error) =>
+        println(s"Errors: ++++ $error")
+        GralDataProceso()
+    }
+    assert(finalResult.id_comparativo == idComparative)
+  }
+
+  /****************************************************************************************/
+  //////////////////////////////////////////////////////////////////////////////////////////
+  "al calcular la cantidad" should "mostrar sus resultados" in {
+    implicit val getCalcularResult = GetResult(r => Calcular(r.nextString, r.nextString, r.nextString, r.nextInt, r.nextDouble, r.nextBoolean))     //implicit val getUserResult = GetResult(r => Calcular(r.<<, r.<<, r.<<, r.<<, r.<< ))
+
+    val calcular = sql"""select * from calccantpedid as c where c.id_comparativo = $idComparative""".as[Calcular]
+    val resultado = generateOrders.testearQueriesCalcular(calcular)
+
+    println("&&&&&&&&&&&&&&&&&&&&&&&&&&   Calculando las Cantidades    &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+    val resultado2 = Await.result(resultado, 5 seconds)
+    val finalResult = resultado2 match {
+      case Right(value) =>
+          value.map( c => println(show(c)))
+          value
+      case Left(error) =>
+        println(s"###############3 Error: $error")
+        Seq(Calcular())
+    }
+    assert(finalResult.head.id_comparativo == idComparative)
+  }
+  ///////////////////////////////////////////////////////////////////////////////////////////***************************************************************************************/
+  /*"Al calcular el ultimo numero de pedido" should "mostrar los resultados"  in {
+    implicit val getLastOrderResult = GetResult(r => r.nextString)//implicit val getUserResult = GetResult(r => Calcular(r.<<, r.<<, r.<<, r.<<, r.<< ))
+    val allo = 2019
+    val lastOrder = sql"""select max(no_pedido) as ultimo from tblpedi where compra = 'PEDI' and ejercicio = $allo""".as[String]
+    val resultado = generateOrders.testearQueriesLastOrder(lastOrder)
+    resultado.futureValue.foreach(_.head shouldBe "0645")
+  }*/
+  //////////////////////////////////////////////////////////////////////////////////////////
+  "at generateOrders" should "mostrar sus resultados" in {
+    val allo = 2019
+    val lastOrderSQL = sql"""select max(no_pedido) as ultimo from tblpedi where compra = 'PEDI' and ejercicio = $allo""".as[String]
+    val lastOrder = generateOrders.testearQueriesLastOrder(lastOrderSQL)
+
+    implicit val getCalcularResult = GetResult(r => Calcular(r.nextString, r.nextString, r.nextString, r.nextInt, r.nextDouble, r.nextBoolean))
+    val calcular = sql"""select * from calccantpedid as c where c.id_comparativo = $idComparative""".as[Calcular]
+    val lstOrdersFuture = generateOrders.testearQueriesCalcular(calcular)
+
+    val dataGralesProcess = new CGralDataProceso()
+    val resultadoDatosGralesProcess = dataGralesProcess.byId(idComparative)
+
+    import cats.data.EitherT
+    import cats.implicits._
+    import slick.jdbc.SQLActionBuilder
+
+    val resultados = for {
+      num <- EitherT(lastOrder)
+      gralData <- EitherT(resultadoDatosGralesProcess)
+      lstOrders <- EitherT(lstOrdersFuture)
+    } yield {
+      var numOrder: Int = num.head.toInt
+      val rfc_dependencia = "SES890417TX8"
+      lstOrders.map { provGanad =>
+        numOrder += 1
+        GralDataPedido (
+                no_pedido = numOrder.toString,
+                //compra = "PEDI",
+                ejercicio = 2019,
+                fecha_pedido = Fechas("01/01/2020"),
+                tipo_compra = gralData.tipo_compra,
+                fecha_entrega = Some(gralData.plazo),
+                no_sol_compra = Some(gralData.memo),
+                destino = gralData.destino,
+                elaboro = gralData.elaboro,
+                cve_depto = gralData.cve_oficina,
+                cve_provedor = provGanad.rfc,
+                cve_presup = gralData.programa,
+                cancelado = Some(false),
+                obsercancel = None,
+                ejercicio_presupuesto = 2019,
+                id_comparativo = Some(gralData.id_comparativo),
+                rfc_dependencia = "SES890417TX8")
+      }
+    }
+
+    val finalResult = Await.result(resultados.value, 500 seconds)
+
+    val dataGralPedi = new CGralDataPedido()
+
+    val creados = finalResult match {
+      case Right(value) => dataGralPedi.insertMany(value)
+      case Left(value) => Future.successful(println( s"Errorres $value  *******************************"))
+    }
+
+    val ver = Await.result(creados, 500 seconds)
+
+    import manik1.manik1.shared.CantidadXDividir
+    implicit val getCantidadXDivirResult = GetResult(r => CantidadXDividir(r.nextString, r.nextString, r.nextString, r.nextInt, r.nextInt, r.nextInt, r.nextDouble, r.nextInt, r.nextInt, r.nextInt))
+    //println(idComparative)
+    val qryBuscaCantXdiv = sql"""select * from busca_cant_x_dividir where id_comparativo = $idComparative""";
+    val buscaCantXdiv = generateOrders.run(qryBuscaCantXdiv.as[CantidadXDividir])
+
+    implicit val getBuscaPedidoXProveedorResult = GetResult(r => BuscaPedidoXProveedor(
+          r.nextString, r.nextString, r.nextString, r.nextString, r.nextInt, r.nextDouble, r.nextString, r.nextString,
+          r.nextString, r.nextInt, r.nextInt, r.nextInt, r.nextInt, r.nextString, r.nextInt ))
+
+    def sqlBuscaPedProv(cveArt: String,  programa: String, reng: Int, entrega: Int) =
+      sql"""select * from busca_peddeprov where id_comparativo = $idComparative and
+             cve_articulo = $cveArt and Programa = $programa and renglon = $reng and entrega = $entrega"""
+
+    val generateDetails = for {
+      cantXDividir <- EitherT(buscaCantXdiv)
+    } yield {
+      val insertarClaves = cantXDividir.map { cantXDiv =>
+          val qrySQL = sqlBuscaPedProv(cantXDiv.cve_articulo, cantXDiv.programa, cantXDiv.renglon, cantXDiv.entrega)
+          val numeroPedidoProveedor = generateOrders.run(qrySQL.as[BuscaPedidoXProveedor])
+
+            for { numPedProv <- numeroPedidoProveedor } yield {
+              numPedProv match {
+                case Right(asignar) =>
+                  asignar.map { asig => DetallePedido (no_pedido = asig.no_pedido, compra = asig.compra, ejercicio = asig.ejercicio, fecha_pedido = Fechas("01/01/2018"),
+                                      cve_articulo = asig.cve_articulo, cantidad = asig.cantidad, precio = asig.precio, anexo = asig.anexo, marcas = asig.marca,
+                                      id_comparativo = asig.id_comparativo /*modelo = asig.modelo*/ )
+                  }
+                case Left(value) =>
+                  println(s"Ocurrio un error: ++++  $value")
+                  Seq.empty[DetallePedido]
+              }
+          }
+        }
+      for {
+        futSeq <- Future.sequence(insertarClaves)
+      }  yield {
+        val detPedido = new CDetallePedido()
+        detPedido.insertMany(futSeq.flatten)
+      }
+    }
+     Await.result(generateDetails.value, 50 seconds)
+
+  }
+
+}

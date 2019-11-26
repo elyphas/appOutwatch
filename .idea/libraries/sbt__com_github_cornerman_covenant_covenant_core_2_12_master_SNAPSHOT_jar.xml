@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: com.github.cornerman.covenant:covenant-core_2.12:master-SNAPSHOT:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.github.cornerman.covenant/covenant-core_2.12/jars/covenant-core_2.12-master-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.github.cornerman.covenant/covenant-core_2.12/srcs/covenant-core_2.12-master-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

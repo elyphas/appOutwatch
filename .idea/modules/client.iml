@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="client [file:/home/elyphas/Prjs/tsoolik_testeando/]" external.linked.project.path="$MODULE_DIR$/../../client" external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
+    <output url="file://$MODULE_DIR$/../../client/target/scala-2.12/classes" />
+    <output-test url="file://$MODULE_DIR$/../../client/target/scala-2.12/test-classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../client">
+      <sourceFolder url="file://$MODULE_DIR$/../../client/src/main/scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../client/target/scala-2.12/src_managed/main" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../client/target/scala-2.12/src_managed/test" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../client/src/test/scala" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../../client/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="sbt: org.scala-js:scalajs-library_2.12:0.6.31:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:kittens_sjs0.6_2.12:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-macros_sjs0.6_2.12:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-macros_2.12:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-kernel_sjs0.6_2.12:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-kernel_2.12:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-effect_sjs0.6_2.12:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-core_sjs0.6_2.12:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:cats-core_2.12:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:alleycats-core_sjs0.6_2.12:2.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.monix:monix_sjs0.6_2.12:3.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.monix:monix-tail_sjs0.6_2.12:3.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.monix:monix-reactive_sjs0.6_2.12:3.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.monix:monix-execution_sjs0.6_2.12:3.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.monix:monix-eval_sjs0.6_2.12:3.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.monix:monix-catnap_sjs0.6_2.12:3.0.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.monix:implicitbox_sjs0.6_2.12:0.1.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.outr:scribe_sjs0.6_2.12:2.7.9:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.outr:scribe-macros_sjs0.6_2.12:2.7.9:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.outr:perfolation_sjs0.6_2.12:1.1.4:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.outr:perfolation-macros_sjs0.6_2.12:1.1.4:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.cornerman:sloth_sjs0.6_2.12:0.2.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.cornerman:chameleon_sjs0.6_2.12:0.2.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.typelevel:macro-compat_2.12:1.1.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang.modules:scala-java8-compat_2.12:0.8.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-js:scalajs-dom_sjs0.6_2.12:0.9.7:jar" level="project" />
+    <orderEntry type="library" name="sbt: io.suzaku:boopickle_sjs0.6_2.12:1.3.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe:config:1.3.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.chuusai:shapeless_sjs0.6_2.12:2.3.3:jar" level="project" />
+    <orderEntry type="module" module-name="shared" exported="" />
+    <orderEntry type="library" name="sbt: com.github.cornerman.outwatch:outwatch-monix_sjs0.6_2.12:0a470538:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.cornerman.outwatch:outwatch-reactive_sjs0.6_2.12:0a470538:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.cornerman.outwatch:outwatch_sjs0.6_2.12:0a470538:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.raquo:domtypes_sjs0.6_2.12:0.9.5:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe.akka:akka-actor_2.12:2.5.25:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.scalactic:scalactic_sjs0.6_2.12:3.0.8:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.scalatest:scalatest_sjs0.6_2.12:3.0.8:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.cornerman.covenant:covenant-core_sjs0.6_2.12:master-SNAPSHOT:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.cornerman.covenant:covenant-http_sjs0.6_2.12:master-SNAPSHOT:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.cornerman.covenant:covenant-ws_sjs0.6_2.12:master-SNAPSHOT:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.github.cornerman.mycelium:mycelium_sjs0.6_2.12:bad805c:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.scala-js:scalajs-test-bridge_2.12:0.6.31:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.scala-js:scalajs-test-interface_2.12:0.6.31:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang:scala-library:2.12.6:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang:scala-reflect:2.12.6:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.scala-lang.modules:scala-xml_2.12:1.2.0:jar" level="project" />
+  </component>
+</module>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: com.outr:perfolation-macros_sjs0.6_2.12:1.1.4:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.outr/perfolation-macros_sjs0.6_2.12/jars/perfolation-macros_sjs0.6_2.12-1.1.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.outr/perfolation-macros_sjs0.6_2.12/srcs/perfolation-macros_sjs0.6_2.12-1.1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
